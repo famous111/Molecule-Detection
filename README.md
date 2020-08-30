@@ -26,16 +26,16 @@ A class to describe the interaction between molecule and resonator modes
 `save_path`: the path to save data. Default value (on linux): "../data/localtime"
 
 ### Methods
-`simulation(self, show_progress=None, save_info=True, save_data=False)`: calculate the Lindbladian master equation. `show_progress`(None/True) determines whether to show progress bar of calculation.; `save_info` determines whether to write system parameters into a txt file; `save_data` determines whether to save the simulation result into the `save_path`.  
-`photon_simulated(self, save_data=False)`: Use simulation result to calculate real-time transmission and reflection as well as the transmitted and reflected photon number as a function of time
-`photon_theory(self, save_data=False)`: Use analytical solution to calculate real-time transmission and reflection as well as the transmitted and reflected photon number as a function of time
+`simulation(self, show_progress=None, save_info=True, save_data=False)`: calculate the Lindbladian master equation. `show_progress`(None/True) determines whether to show progress bar of calculation.; `save_info` determines whether to write system parameters into a txt file; `save_data` determines whether to save the simulation result into the `save_path` (same as below).   
+`photon_simulated(self, save_data=False)`: Use simulation result to calculate real-time transmission and reflection as well as the transmitted and reflected photon number as a function of time  
+`photon_theory(self, save_data=False)`: Use analytical solution to calculate real-time transmission and reflection as well as the transmitted and reflected photon number as a function of time  
 `draw_population(self)`: draw the graph of molecular state population evolution  
 `draw_comparison_tran(self)`: draw the real-time transmission curve with the data from simulation and analytical solution. (Used for calibration)
 
 ```python
 util.tran_spectrum(Mol, delta_max, delta_step, sampletlist, method, calculation="parallel", save_data=False)
 ```
-a function to calculate the average transmission spectrum 
+a function to calculate the average transmission spectrum and draw a graph of transmission spectrum
 
 ### Parameters
 `Mol`: an instance of `molSystem` to provide background parameters (expect detuning)  
@@ -43,7 +43,8 @@ a function to calculate the average transmission spectrum
 `delta_step`: the increasing step of detuning frequency from zero (unit: MHz)
 `sampletlist`: a list of sampling time points to calculate average transmission  
 `method`: `'theory'` or `'simulation'`. Select the method to derive transmission. Default value: `'theory'`  
-`calculation`: `'serial'` or `'parallel'`. Select serial or parallel computation. Default value: `'parallel'`
+`calculation`: `'serial'` or `'parallel'`. Select serial or parallel computation. Default value: `'parallel'`  
+`save_data`: determines whether to save the raw data into the `Mol._path`. 
 
 ## Examples
 ```python
